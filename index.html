@@ -4,218 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Vícios</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00d4ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header p {
-            color: #a0a0a0;
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--card-color), transparent);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .card.cigarro {
-            --card-color: #ff6b6b;
-        }
-
-        .card.pornografia {
-            --card-color: #ff69b4;
-        }
-
-        .card.telas {
-            --card-color: #4ecdc4;
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--card-color);
-        }
-
-        .timer {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .time-display {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .time-unit {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .time-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--card-color);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .time-label {
-            font-size: 0.8rem;
-            color: #a0a0a0;
-            text-transform: uppercase;
-        }
-
-        .extended-time {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .extended-unit {
-            text-align: center;
-        }
-
-        .extended-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .extended-label {
-            font-size: 0.7rem;
-            color: #a0a0a0;
-            text-transform: uppercase;
-        }
-
-        .reset-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--card-color), transparent);
-            border: 2px solid var(--card-color);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .reset-btn:hover {
-            background: var(--card-color);
-            transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .reset-btn:active {
-            transform: scale(0.98);
-        }
-
-        .last-reset {
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: #a0a0a0;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .time-display {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .time-value {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
@@ -225,8 +14,11 @@
 
     <div class="container">
         <div class="card cigarro">
-            <span class="card-icon">🚭</span>
-            <h2>Cigarro</h2>
+            <div class="container-icon">
+                <span class="card-icon">🚭</span>
+                <h2>Cigarro</h2>
+            </div>
+            
             <div class="timer">
                 <div class="time-display">
                     <div class="time-unit">
@@ -262,8 +54,11 @@
         </div>
 
         <div class="card pornografia">
-            <span class="card-icon">🔒</span>
-            <h2>Pornografia</h2>
+            <div class="container-icon">
+                <span class="card-icon">🔒</span>
+                <h2>Pornografia</h2>
+            </div>
+            
             <div class="timer">
                 <div class="time-display">
                     <div class="time-unit">
@@ -299,8 +94,11 @@
         </div>
 
         <div class="card telas">
-            <span class="card-icon">📱</span>
-            <h2>Telas</h2>
+
+            <div class="container-icon">
+                <span class="card-icon">📱</span>
+                <h2>Telas</h2>
+            </div>
             <div class="timer">
                 <div class="time-display">
                     <div class="time-unit">
@@ -336,129 +134,6 @@
         </div>
     </div>
 
-    <script>
-        const addictions = ['cigarro', 'pornografia', 'telas'];
-        const timers = {};
-
-        // Helper: safely get an element
-        function el(id) {
-            return document.getElementById(id) || null;
-        }
-
-        // Helper: pad numbers (e.g., 5 -> "05")
-        function pad(n) {
-            return n < 10 ? '0' + n : String(n);
-        }
-
-        // Ensure saved date is valid; if not, set to now and persist
-        function parseSavedDate(addiction) {
-            const key = `${addiction}_reset_date`;
-            const raw = localStorage.getItem(key);
-            if (!raw) {
-                const now = new Date();
-                localStorage.setItem(key, now.toISOString());
-                return now;
-            }
-            const d = new Date(raw);
-            if (Number.isNaN(d.getTime())) {
-                // invalid date in storage, replace with now
-                const now = new Date();
-                localStorage.setItem(key, now.toISOString());
-                return now;
-            }
-            return d;
-        }
-
-        function loadDates() {
-            addictions.forEach(addiction => {
-                timers[addiction] = parseSavedDate(addiction);
-                updateLastResetDisplay(addiction);
-            });
-        }
-
-        function resetTimer(addiction) {
-            if (confirm(`Tem certeza que deseja resetar o contador de ${addiction}?`)) {
-                const now = new Date();
-                timers[addiction] = now;
-                localStorage.setItem(`${addiction}_reset_date`, now.toISOString());
-                updateLastResetDisplay(addiction);
-                updateTimer(addiction);
-            }
-        }
-
-        function updateLastResetDisplay(addiction) {
-            const lastResetElement = el(`${addiction}-last-reset`);
-            if (!lastResetElement) return;
-            const resetDate = parseSavedDate(addiction);
-            // Defensive: ensure resetDate is valid
-            if (Number.isNaN(resetDate.getTime())) {
-                lastResetElement.textContent = 'Último reset: data inválida';
-                return;
-            }
-            const formattedDate = resetDate.toLocaleString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            lastResetElement.textContent = `Último reset: ${formattedDate}`;
-        }
-
-        function updateTimer(addiction) {
-            // Defensive checks
-            if (!timers.hasOwnProperty(addiction)) {
-                timers[addiction] = parseSavedDate(addiction);
-            }
-            const startDate = timers[addiction];
-            if (!startDate || Number.isNaN(new Date(startDate).getTime())) {
-                timers[addiction] = parseSavedDate(addiction);
-            }
-
-            const now = new Date();
-            const diffMs = now - new Date(timers[addiction]);
-            if (Number.isNaN(diffMs)) return; // can't compute
-
-            const totalSeconds = Math.floor(diffMs / 1000);
-            const seconds = totalSeconds % 60;
-            const totalMinutes = Math.floor(totalSeconds / 60);
-            const minutes = totalMinutes % 60;
-            const totalHours = Math.floor(totalMinutes / 60);
-            const hours = totalHours % 24;
-            const days = Math.floor(totalHours / 24);
-            const months = Math.floor(days / 30);
-            const years = Math.floor(days / 365);
-
-            const elSeconds = el(`${addiction}-seconds`);
-            const elMinutes = el(`${addiction}-minutes`);
-            const elHours = el(`${addiction}-hours`);
-            const elDays = el(`${addiction}-days`);
-            const elMonths = el(`${addiction}-months`);
-            const elYears = el(`${addiction}-years`);
-
-            if (elSeconds) elSeconds.textContent = pad(seconds);
-            if (elMinutes) elMinutes.textContent = pad(minutes);
-            if (elHours) elHours.textContent = pad(hours);
-            if (elDays) elDays.textContent = String(days);
-            if (elMonths) elMonths.textContent = String(months);
-            if (elYears) elYears.textContent = String(years);
-        }
-
-        function updateAllTimers() {
-            addictions.forEach(addiction => {
-                try {
-                    updateTimer(addiction);
-                } catch (e) {
-                    // keep running others if one fails
-                    console.error('Erro atualizando timer', addiction, e);
-                }
-            });
-        }
-
-        // inicialização
-        loadDates();
-        updateAllTimers();
-        setInterval(updateAllTimers, 1000);
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
